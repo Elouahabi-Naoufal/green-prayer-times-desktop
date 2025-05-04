@@ -1,0 +1,31 @@
+
+{
+  "appId": "com.prayertimes.app",
+  "productName": "Prayer Times",
+  "directories": {
+    "output": "release/"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*"
+  ],
+  "extraResources": [
+    {
+      "from": "public",
+      "to": "public",
+      "filter": ["**/*"]
+    }
+  ],
+  "mac": {
+    "category": "public.app-category.lifestyle",
+    "icon": "public/mosque-icon.png"
+  },
+  "win": {
+    "target": ["nsis"],
+    "icon": "public/mosque-icon.png"
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "category": "Utility"
+  }
+}
