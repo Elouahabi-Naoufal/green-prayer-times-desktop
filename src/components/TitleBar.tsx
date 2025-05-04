@@ -1,9 +1,19 @@
 
 import { Minus, X, Square } from "lucide-react";
 
+// Extend the existing PrayerTimesResponse interface from usePrayerTimes.ts
+interface PrayerTimesResponse {
+  success: boolean;
+  date?: string;
+  prayerTimes?: Record<string, string>;
+  error?: string;
+}
+
+// Create a unified interface for the electron API
 declare global {
   interface Window {
     electron: {
+      fetchPrayerTimes: () => Promise<PrayerTimesResponse>;
       windowControls: {
         minimize: () => void;
         maximize: () => void;

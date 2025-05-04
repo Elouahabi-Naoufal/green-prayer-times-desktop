@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
-interface PrayerTimesResponse {
+export interface PrayerTimesResponse {
   success: boolean;
   date?: string;
   prayerTimes?: Record<string, string>;
@@ -13,6 +13,11 @@ declare global {
   interface Window {
     electron: {
       fetchPrayerTimes: () => Promise<PrayerTimesResponse>;
+      windowControls: {
+        minimize: () => void;
+        maximize: () => void;
+        close: () => void;
+      }
     }
   }
 }
