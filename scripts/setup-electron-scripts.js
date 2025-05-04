@@ -1,6 +1,11 @@
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 try {
   // Read the current package.json
@@ -9,8 +14,8 @@ try {
   
   // Add our electron scripts
   packageJson.scripts = packageJson.scripts || {};
-  packageJson.scripts['electron:dev'] = 'node -e "require(\'./electron/package-scripts\').electronDev()"';
-  packageJson.scripts['electron:build'] = 'node -e "require(\'./electron/package-scripts\').electronBuild()"';
+  packageJson.scripts['electron:dev'] = 'node --experimental-modules electron/package-scripts.mjs electronDev';
+  packageJson.scripts['electron:build'] = 'node --experimental-modules electron/package-scripts.mjs electronBuild';
   
   // Write the updated package.json
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
